@@ -5,25 +5,6 @@ spring:
 server:
   port: 4444
   
-eureka:
-  client:
-    registryFetchIntervalSeconds: 10 
-    serviceUrl:
-      defaultZone: http://localhost:1111/eureka
-  instance:
-    leaseRenewalIntervalInSeconds: 10
-    leaseExpirationDurationInSeconds: 30
-
-cloud-demo-consumer: 
-  ribbon:  
-    NFLoadBalancerRuleClassName: com.suixingpay.cloud.gateway.ribbon.TestRule
-    
-ribbon:
-  ReadTimeout: 5000
-  ConnectTimeout: 2000
-  MaxTotalConnections: 10 #连接池最大连接数
-  MaxConnectionsPerHost: 2 #每个host最大使用连接数
-  
 zuul:
   semaphore:
     maxSemaphores: 10
@@ -45,3 +26,22 @@ hystrix:
           timeInMilliseconds: 10000
         healthSnapshot:
           intervalInMilliseconds: 500
+          
+#cloud-demo-consumer: 
+#  ribbon:  
+#    NFLoadBalancerRuleClassName: com.suixingpay.cloud.gateway.ribbon.TestRule
+          
+eureka:
+  client:
+    registryFetchIntervalSeconds: 10 
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+    
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 2000
+  MaxTotalConnections: 10 #连接池最大连接数
+  MaxConnectionsPerHost: 2 #每个host最大使用连接数
