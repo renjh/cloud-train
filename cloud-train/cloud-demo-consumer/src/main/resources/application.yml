@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: cloud-demo-consumer
+
+server:
+  port: 2223
+  
+eureka:
+  client: 
+    registryFetchIntervalSeconds: 10 
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+    
+#cloud-demo-provider: 
+#  ribbon:  
+#    NFLoadBalancerRuleClassName: com.suixingpay.cloud.demo.consumer.ribbon.TestRule
+    
+feign:
+  hystrix:
+    enabled: true
+  httpclient: 
+    connectionTimeout: 1000
+    maxConnectionsPerRoute: 2
+  client:
+    config: 
+      default: 
+        connectTimeout: 1000
+        readTimeout: 1000
+    
+hystrix:
+  command:
+    default: 
+    #ProviderClient#test1(String,Integer): 
+      #fallback:
+        #enabled: false
+      circuitBreaker: 
+        requestVolumeThreshold: 3
+        sleepWindowInMilliseconds: 5000
+        errorThresholdPercentage: 50
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 10000
+        healthSnapshot:
+          intervalInMilliseconds: 500
+      execution:
+        timeout:
+          enabled: false
+  threadpool:
+    default:
+      coreSize: 5
+      maxQueueSize: 1

@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: cloud-demo-gateway
+    
+server:
+  port: 4444
+  
+eureka:
+  client:
+    registryFetchIntervalSeconds: 10 
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+
+cloud-demo-consumer: 
+  ribbon:  
+    NFLoadBalancerRuleClassName: com.suixingpay.cloud.gateway.ribbon.TestRule
+    
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 2000
+  MaxTotalConnections: 10 #连接池最大连接数
+  MaxConnectionsPerHost: 2 #每个host最大使用连接数
+  
+zuul:
+  semaphore:
+    maxSemaphores: 10
+  routes:
+    route1:
+      path: /foo/**
+      serviceId: cloud-demo-consumer
+      #stripPrefix: false
+    
+hystrix:
+  command:
+    default: 
+      circuitBreaker: 
+        requestVolumeThreshold: 5
+        sleepWindowInMilliseconds: 5000
+        errorThresholdPercentage: 50
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 10000
+        healthSnapshot:
+          intervalInMilliseconds: 500
