@@ -4,15 +4,6 @@ spring:
 
 server:
   port: 2223
-  
-eureka:
-  client: 
-    registryFetchIntervalSeconds: 10 
-    serviceUrl:
-      defaultZone: http://localhost:1111/eureka
-  instance:
-    leaseRenewalIntervalInSeconds: 10
-    leaseExpirationDurationInSeconds: 30
     
 #cloud-demo-provider: 
 #  ribbon:  
@@ -22,7 +13,7 @@ feign:
   hystrix:
     enabled: true
   httpclient: 
-    connectionTimeout: 1000
+    maxConnections: 10
     maxConnectionsPerRoute: 2
   client:
     config: 
@@ -52,3 +43,12 @@ hystrix:
     default:
       coreSize: 5
       maxQueueSize: 1
+      
+eureka:
+  client: 
+    registryFetchIntervalSeconds: 10 
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
