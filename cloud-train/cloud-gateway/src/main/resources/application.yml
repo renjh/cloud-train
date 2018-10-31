@@ -45,3 +45,4 @@ ribbon:
   ConnectTimeout: 2000
   MaxTotalConnections: 10 #连接池最大连接数
   MaxConnectionsPerHost: 2 #每个host最大使用连接数
+  UseIPAddrForServer: true
