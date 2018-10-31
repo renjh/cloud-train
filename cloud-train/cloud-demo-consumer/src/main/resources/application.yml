@@ -52,3 +52,6 @@ eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
     leaseExpirationDurationInSeconds: 30
+
+ribbon:
+  UseIPAddrForServer: true
