@@ -28,8 +28,13 @@ public class Demo1Controller {
         return "demo1";
     }
 
-    @GetMapping("/format")
-    public Date format() {
+    @GetMapping("/argument")
+    public void argument(UserInfo userInfo) {
+        System.out.println(userInfo.toString());
+    }
+
+    @GetMapping("/returnValue")
+    public Date returnValue() {
         return new Date();
     }
 

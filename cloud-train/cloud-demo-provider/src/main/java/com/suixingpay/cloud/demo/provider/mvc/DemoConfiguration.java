@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -54,6 +55,11 @@ public class DemoConfiguration {
             @Override
             public void addInterceptors(InterceptorRegistry registry) {
                 registry.addInterceptor(new DemoInterceptor());
+            }
+
+            @Override
+            public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+                argumentResolvers.add(new DemoHandlerMethodArgumentResolver());
             }
 
             @Override
