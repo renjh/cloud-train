@@ -13,11 +13,3 @@ eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
     leaseExpirationDurationInSeconds: 30
-    
-feign:
-  hystrix:
-    enabled: true
-  httpclient: 
-    connectionTimeout: 1000
-    maxConnectionsPerRoute: 2
-    maxConnections: 10

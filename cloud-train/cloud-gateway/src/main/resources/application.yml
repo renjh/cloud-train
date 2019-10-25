@@ -36,9 +36,6 @@ eureka:
     registryFetchIntervalSeconds: 10 
     serviceUrl:
       defaultZone: http://localhost:1111/eureka
-  instance:
-    leaseRenewalIntervalInSeconds: 10
-    leaseExpirationDurationInSeconds: 30
     
 ribbon:
   ReadTimeout: 5000

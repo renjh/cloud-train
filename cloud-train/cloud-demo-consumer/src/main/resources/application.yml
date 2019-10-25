@@ -42,7 +42,9 @@ hystrix:
   threadpool:
     default:
       coreSize: 5
-      maxQueueSize: 1
+      maximumPoolSize: 10
+      maxQueueSize: 10
+      queueSizeRejectionThreshold: 3
       
 eureka:
   client: 
